@@ -10,12 +10,10 @@ def get_data():
     f.close()
     return data
 
-ocr_dict = get_data() 
-print('BREAK')
 
-def basic_clean(data:dict):
+def basic_clean(ocr_dict:dict):
     for key in ocr_dict:
-        ocr_dict[key] = ocr_dict[key].strip('\n\'"~|°`‘-!')
+        ocr_dict[key] = ocr_dict[key].strip('\n\'"~|°`‘-!“ ')
         ocr_dict[key]=ocr_dict[key].replace("\n", ' ')
         ocr_dict[key]=ocr_dict[key].replace(",", '.')
         s2 = ""
@@ -25,7 +23,8 @@ def basic_clean(data:dict):
         ocr_dict[key] = s2
         if not key == 'date':
             ocr_dict[key]=ocr_dict[key].replace("A", '4')
+    print('BREAK')
     return ocr_dict
 
-print(basic_clean(ocr_dict))
+print(basic_clean(get_data()))
 
