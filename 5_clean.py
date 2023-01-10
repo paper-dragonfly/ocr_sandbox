@@ -13,12 +13,12 @@ def get_data():
 
 def basic_clean(ocr_dict:dict):
     for key in ocr_dict:
-        ocr_dict[key] = ocr_dict[key].strip('\n\'"~|°`‘-!“ ')
+        ocr_dict[key] = ocr_dict[key].strip('\n\'"~|°`‘-!“ [()><')
         ocr_dict[key]=ocr_dict[key].replace("\n", ' ')
         ocr_dict[key]=ocr_dict[key].replace(",", '.')
         s2 = ""
         for i in range(len(ocr_dict[key])):
-            if not ocr_dict[key][i] in ['\\','|','-']:
+            if not ocr_dict[key][i] in ['\\','|','-', '“']:
                 s2 += ocr_dict[key][i]
         ocr_dict[key] = s2
         if not key == 'date':
